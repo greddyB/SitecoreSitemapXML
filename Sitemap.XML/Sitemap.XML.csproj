@@ -151,6 +151,7 @@
     <Compile Include="Models\SitemapManager.cs" />
     <Compile Include="Models\SitemapManagerForm.cs" />
     <Compile Include="Models\SitemapManagerConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\SitemapXML.config">

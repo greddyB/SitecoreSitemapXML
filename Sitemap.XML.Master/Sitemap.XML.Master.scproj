@@ -90,7 +90,7 @@ The following are the default values:
     <PackageExcludeCode>False</PackageExcludeCode>
     <AddDateTimeToPackageName>False</AddDateTimeToPackageName>
     <PackageAuthor>Vasiliy Fomichev</PackageAuthor>
-    <PackagePublisher>Vasiliy Fomichev</PackagePublisher>
+    <PackagePublisher>Gautam Budidha</PackagePublisher>
     <PackageReadme>HOW TO USE THE SITEMAP XML
 
 	1.  Install the package using the Update Installation Wizard (/sitecore/admin/updateinstallationwizard.aspx)
@@ -103,12 +103,12 @@ The following are the default values:
 
 The following are the default values:
 
-<sitemapVariables><sitemapVariable name="xmlnsTpl" value="http://www.sitemaps.org/schemas/sitemap/0.9" /><sitemapVariable name="database" value="master" /><sitemapVariable name="sitemapConfigurationItemPath" value="/sitecore/system/Modules/Sitemap XML/" /><sitemapVariable name="productionEnvironment" value="false" /><sitemapVariable name="generateRobotsFile" value="true" /></sitemapVariables>
+&amp;lt;sitemapVariables xmlns=&amp;quot;http://schemas.microsoft.com/developer/msbuild/2003&amp;quot;&amp;gt;&amp;lt;sitemapVariable name=&amp;quot;xmlnsTpl&amp;quot; value=&amp;quot;http://www.sitemaps.org/schemas/sitemap/0.9&amp;quot; /&amp;gt;&amp;lt;sitemapVariable name=&amp;quot;database&amp;quot; value=&amp;quot;master&amp;quot; /&amp;gt;&amp;lt;sitemapVariable name=&amp;quot;sitemapConfigurationItemPath&amp;quot; value=&amp;quot;/sitecore/system/Modules/Sitemap XML/&amp;quot; /&amp;gt;&amp;lt;sitemapVariable name=&amp;quot;productionEnvironment&amp;quot; value=&amp;quot;false&amp;quot; /&amp;gt;&amp;lt;sitemapVariable name=&amp;quot;generateRobotsFile&amp;quot; value=&amp;quot;true&amp;quot; /&amp;gt;&amp;lt;/sitemapVariables&amp;gt;
 
 
 	4. Open the Sitecore Content Editor.
 	5. Navigate to /sitecore/content/System/modules/Sitemap XML/.
-	6. Create a Sitemap Configuration item and name it with the same name as the website name attribute in the <site />  definition for your website (Non-case sensitive). 
+	6. Create a Sitemap Configuration item and name it with the same name as the website name attribute in the &amp;lt;site xmlns=&amp;quot;http://schemas.microsoft.com/developer/msbuild/2003&amp;quot; /&amp;gt;  definition for your website (Non-case sensitive). 
 	
 	This item will contain all of the website-specific configuration used by the module. 
 	
@@ -122,7 +122,8 @@ The following are the default values:
 
 	7. Sitemap will be generated and submitted after publishing (if productionEnvironment setting is set to true). Also you can submit sitemap manually. Run the Sitemap Manager application (sitecore menu/all programs/sitemap manager) and click “Refresh sitemap” button.</PackageReadme>
     <PackageVersion>1.1</PackageVersion>
-    <SitecoreAssemblyPath>C:\inetpub\wwwroot\sc80rev150621\Website\bin</SitecoreAssemblyPath>
+    <SitecoreAssemblyPath>
+    </SitecoreAssemblyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'DEV' ">
     <DebugSymbols>true</DebugSymbols>

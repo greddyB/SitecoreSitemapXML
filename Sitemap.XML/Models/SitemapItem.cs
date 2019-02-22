@@ -89,64 +89,43 @@ namespace Sitemap.XML.Models
 
         public static string GetItemUrl(Item item, SiteContext site)
         {
-            Sitecore.Links.UrlOptions options = Sitecore.Links.UrlOptions.DefaultOptions;
+            var options = Sitecore.Links.UrlOptions.DefaultOptions;
 
             options.SiteResolving = Sitecore.Configuration.Settings.Rendering.SiteResolving;
             options.Site = SiteContext.GetSite(site.Name);
             options.AlwaysIncludeServerUrl = false;
 
-            string url = Sitecore.Links.LinkManager.GetItemUrl(item, options);
+            var url = Sitecore.Links.LinkManager.GetItemUrl(item, options);
+
 
             var serverUrl = (new SitemapManagerConfiguration(site.Name)).ServerUrl;
+            var protocol = SitemapManagerConfiguration.IsHttps ? "https://" : "http://";
             
-            if (serverUrl.Contains("http://"))
+            if (serverUrl.Contains(protocol))
             {
-                serverUrl = serverUrl.Substring("http://".Length);
-            }
-            else if (serverUrl.Contains("https://"))
-            {
-                serverUrl = serverUrl.Substring("https://".Length);
+                serverUrl = serverUrl.Substring(protocol.Length);
             }
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             if (!string.IsNullOrEmpty(serverUrl))
             {
-                if (url.Contains("://") && !url.Contains("http"))
-                {
-                    sb.Append("http://");
-                    sb.Append(serverUrl);
-                    if (url.IndexOf("/", 3) > 0)
-                        sb.Append(url.Substring(url.IndexOf("/", 3)));
-                }
-                else
-                {
-                    sb.Append("http://");
-                    sb.Append(serverUrl);
-                    sb.Append(url);
-                }
+                sb.Append(protocol);
+                sb.Append(serverUrl);
+                sb.Append(url);
             }
             else if (!string.IsNullOrEmpty(site.Properties["hostname"]))
             {
-                sb.Append("http://");
+                sb.Append(protocol);
                 sb.Append(site.Properties["hostname"]);
                 sb.Append(url);
             }
             else
             {
-                if (url.Contains("://") && !url.Contains("http"))
-                {
-                    sb.Append("http://");
-                    sb.Append(url);
-                }
-                else
-                {
-                    sb.Append(Sitecore.Web.WebUtil.GetFullUrl(url));
-                }
+                sb.Append(Sitecore.Web.WebUtil.GetFullUrl(url));
             }
 
             return sb.ToString();
-
         }
 
         #endregion

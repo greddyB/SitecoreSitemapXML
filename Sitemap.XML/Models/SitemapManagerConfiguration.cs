@@ -97,6 +97,8 @@ namespace Sitemap.XML.Models
 
         public string EnabledTemplates => GetValueByNameFromDatabase(Constants.WebsiteDefinition.EnabledTemplatesFieldName);
 
+        public string ExcludedItems => GetValueByNameFromDatabase(Constants.WebsiteDefinition.ExcludedItemsFieldName);
+
         public bool CleanupBucketPath => GetValueByNameFromDatabase(Constants.WebsiteDefinition.CleanupBucketPath) == "1";
 
         public string ServerUrl
@@ -115,6 +117,15 @@ namespace Sitemap.XML.Models
             {
                 var production = GetValueByName("productionEnvironment");
                 return !string.IsNullOrEmpty(production) && (production.ToLower() == "true" || production == "1");
+            }
+        }
+
+        public static bool IsHttps
+        {
+            get
+            {
+                var protocol = GetValueByName("useHttps");
+                return !string.IsNullOrEmpty(protocol) && (protocol.ToLower() == "true" || protocol == "1");
             }
         }
 
